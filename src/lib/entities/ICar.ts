@@ -8,4 +8,6 @@ export default interface ICar {
   color: string;
   kms: number;
   year: number;
+  createdAt?: string;
+  modifiedAt?: string;
 }

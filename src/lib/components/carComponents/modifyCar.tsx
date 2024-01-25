@@ -8,15 +8,22 @@ interface ModifyModalContentProps {
 
 const ModifyModalContent: React.FC<ModifyModalContentProps> = (car: any) => {
   const [formData, setFormData] = useState({
-    id: car.car.id,
-    brand: car.car.brand || "",
-    model: car.car.model || "",
-    transmission: car.car.transmission || "Automatic",
-    passengers: car.car.passengers || 0,
-    air_conditioning: car.car.air_conditioning || false,
-    color: car.car.color || "",
-    kms: car.car.kms || 0,
-    year: car.car.year || 0,
+    id: car.car.id || (car.car.data && car.car.data.id),
+    brand: car.car.brand || (car.car.data && car.car.data.brand) || "",
+    model: car.car.model || (car.car.data && car.car.data.model) || "",
+    transmission:
+      car.car.transmission ||
+      (car.car.data && car.car.data.transmission) ||
+      "Automatic",
+    passengers:
+      car.car.passengers || (car.car.data && car.car.data.passengers) || 0,
+    air_conditioning:
+      car.car.air_conditioning ||
+      (car.car.data && car.car.data.air_conditioning) ||
+      false,
+    color: car.car.color || (car.car.data && car.car.data.color) || "",
+    kms: car.car.kms || (car.car.data && car.car.data.kms) || 0,
+    year: car.car.year || (car.car.data && car.car.data.year) || 0,
   });
 
   const handleFieldChange = (fieldName: string, value: any) => {
@@ -28,7 +35,7 @@ const ModifyModalContent: React.FC<ModifyModalContentProps> = (car: any) => {
 
   const handleModify = async () => {
     try {
-      await CarService.updateCarById(car.car.id, formData);
+      await CarService.updateCarById(car.car.id || car.car.data.id, formData);
       console.log("Car updated successfully!");
       window.location.reload();
     } catch (error) {
