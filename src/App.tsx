@@ -2,6 +2,7 @@ import React from "react";
 import CarRoutes from "./routes/carRoutes/carRoutes";
 import "bulma/css/bulma.min.css";
 import CustomerRoutes from "./routes/customerRoutes/customerRoutes";
+import RentRoutes from "./routes/rentRoutes/rentRoutes";
 
 function App() {
   document.title = "Rent Car Project";
@@ -35,9 +36,22 @@ function App() {
         >
           Create new Customer
         </button>
+        <button
+          className="button is-primary is-fullwidth-mobile mb-3"
+          onClick={() => handleRedirect("/rents")}
+        >
+          Rent List
+        </button>
+        <button
+          className="button is-primary is-fullwidth-mobile mb-3"
+          onClick={() => handleRedirect("/rents/create")}
+        >
+          Create new Rent
+        </button>
       </div>
       <CarRoutes />
       <CustomerRoutes />
+      <RentRoutes />
     </div>
   );
 }
