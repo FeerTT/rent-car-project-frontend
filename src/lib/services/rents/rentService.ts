@@ -1,9 +1,9 @@
-const API_BASE_URL = "https://rentcarproject-jt0m.onrender.com";
+const apiUrl = process.env.REACT_APP_API_BASE_URL;
 
 const RentService = {
   getAllRents: async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/rents`);
+      const response = await fetch(`${apiUrl}/rents`);
       const data = await response.json();
       return data;
     } catch (error) {
@@ -13,7 +13,7 @@ const RentService = {
 
   getRentById: async (rentId: number) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/rents/${rentId}`);
+      const response = await fetch(`${apiUrl}/rents/${rentId}`);
       const data = await response.json();
       return data;
     } catch (error) {
@@ -23,7 +23,7 @@ const RentService = {
 
   createRent: async (newRentData: any) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/rents`, {
+      const response = await fetch(`${apiUrl}/rents`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -39,7 +39,7 @@ const RentService = {
 
   updateRent: async (rentId: number, updatedRentData: any) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/rents/${rentId}`, {
+      const response = await fetch(`${apiUrl}/rents/${rentId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -54,7 +54,7 @@ const RentService = {
 
   deleteRentById: async (rentId: number) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/rents/${rentId}`, {
+      const response = await fetch(`${apiUrl}/rents/${rentId}`, {
         method: "DELETE",
       });
       await response.json();

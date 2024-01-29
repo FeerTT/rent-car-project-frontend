@@ -1,10 +1,10 @@
 import ICar from "../../entities/ICar";
-const API_BASE_URL = "https://rentcarproject-jt0m.onrender.com";
+const apiUrl = process.env.REACT_APP_API_BASE_URL;
 
 const CarService = {
   getAllCars: async (): Promise<ICar[]> => {
     try {
-      const response = await fetch(`${API_BASE_URL}/cars`);
+      const response = await fetch(`${apiUrl}/cars`);
       if (!response.ok) {
         throw new Error(`Error: ${response.status}`);
       }
@@ -19,7 +19,7 @@ const CarService = {
 
   getCarById: async (carId: number): Promise<ICar | null> => {
     try {
-      const response = await fetch(`${API_BASE_URL}/cars/${carId}`);
+      const response = await fetch(`${apiUrl}/cars/${carId}`);
       if (!response.ok) {
         throw new Error(`Error: ${response.status}`);
       }
@@ -32,7 +32,7 @@ const CarService = {
   },
   updateCarById: async (carId: number, updatedCarData: ICar): Promise<ICar> => {
     try {
-      const response = await fetch(`${API_BASE_URL}/cars/${carId}`, {
+      const response = await fetch(`${apiUrl}/cars/${carId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -53,7 +53,7 @@ const CarService = {
   },
   deleteCarById: async (carId: number): Promise<void> => {
     try {
-      const response = await fetch(`${API_BASE_URL}/cars/${carId}`, {
+      const response = await fetch(`${apiUrl}/cars/${carId}`, {
         method: "DELETE",
       });
       if (!response.ok) {
@@ -66,7 +66,7 @@ const CarService = {
   },
   createCar: async (carData: ICar): Promise<ICar> => {
     try {
-      const response = await fetch(`${API_BASE_URL}/cars`, {
+      const response = await fetch(`${apiUrl}/cars`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

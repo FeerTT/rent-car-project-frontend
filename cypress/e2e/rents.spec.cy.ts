@@ -34,7 +34,7 @@ describe("E2E Rents test", () => {
     cy.get("button.is-primary[type='submit']").click();
 
     cy.wait(1000);
-    cy.visit("http://localhost:3000/rents");
+    cy.visit(`${baseUrl}/rents`);
 
     cy.get(".table tbody tr")
       .first()
@@ -58,23 +58,26 @@ describe("E2E Rents test", () => {
     cy.get("#totalPriceModify").clear().type("100");
     cy.get("#paymentMethodModify").clear().type("card");
     cy.get("#isPaidModify").uncheck();
-    cy.get("footer.modal-card-foot button.is-warning").click();
-    cy.intercept("PUT", "**/rents/*").as("putRequest");
 
+    cy.intercept("PUT", "**/rents/*").as("putRequest");
+    cy.get("footer.modal-card-foot button.is-warning").click();
     cy.wait("@putRequest").should((interception) => {
       expect(interception.response).to.exist;
       expect(interception.response!.statusCode).to.equal(200);
     });
 
     cy.get(".table tbody tr:last-child").within(() => {
-      cy.get(".button.is-danger.is-small").click();
       cy.intercept("DELETE", "**/rents/*").as("deleteRequest");
 
+      cy.get(".button.is-danger.is-small").click();
       cy.wait("@deleteRequest").should((interception) => {
         expect(interception.response).to.exist;
         expect(interception.response!.statusCode).to.equal(200);
       });
     });
     cy.visit(baseUrl || "/");
+    cy.url().should("eq", `${baseUrl}/` || "/");
+
+    cy.log("Test completed successfully");
   });
 });

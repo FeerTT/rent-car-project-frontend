@@ -35,7 +35,7 @@ describe("E2E Customers Test", () => {
       cy.get("#address").type("123 Main St, Paraná, Argentina");
       cy.get("button.is-primary[type='submit']").click();
     });
-    cy.wait(2000);
+    cy.wait(1000);
     cy.get("#customerForm").should("have.value", "");
     const generatedValues = {
       firstName: "Fernando",
@@ -102,5 +102,8 @@ describe("E2E Customers Test", () => {
       expect(interception.response!.statusCode).to.equal(200);
     });
     cy.visit(URL_BASE || "/");
+    cy.url().should("eq", `${URL_BASE}/` || "/");
+
+    cy.log("Test completed successfully");
   });
 });

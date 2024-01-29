@@ -71,5 +71,8 @@ describe("E2E Cars Test ", () => {
       expect(interception.response!.statusCode).to.equal(200);
     });
     cy.visit(urlBase || "/");
+    cy.url().should("eq", `${urlBase}/` || "/");
+
+    cy.log("Test completed successfully");
   });
 });

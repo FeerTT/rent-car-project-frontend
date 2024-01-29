@@ -1,9 +1,9 @@
-const API_BASE_URL = "https://rentcarproject-jt0m.onrender.com";
+const apiUrl = process.env.REACT_APP_API_BASE_URL;
 
 const customerService = {
   getAllCustomers: async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/customers`);
+      const response = await fetch(`${apiUrl}/customers`);
       const data = await response.json();
       return data;
     } catch (error) {
@@ -13,7 +13,7 @@ const customerService = {
 
   getCustomerById: async (customerId: number) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/customers/${customerId}`);
+      const response = await fetch(`${apiUrl}/customers/${customerId}`);
       const data = await response.json();
       return data;
     } catch (error) {
@@ -23,7 +23,7 @@ const customerService = {
 
   createCustomer: async (newCustomerData: any) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/customers`, {
+      const response = await fetch(`${apiUrl}/customers`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -39,7 +39,7 @@ const customerService = {
 
   updateCustomer: async (customerId: number, updatedCustomerData: any) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/customers/${customerId}`, {
+      const response = await fetch(`${apiUrl}/customers/${customerId}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -55,7 +55,7 @@ const customerService = {
 
   deleteCustomerById: async (customerId: number) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/customers/${customerId}`, {
+      const response = await fetch(`${apiUrl}/customers/${customerId}`, {
         method: "DELETE",
       });
       const data = await response.json();
