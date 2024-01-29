@@ -1,6 +1,7 @@
+const baseUrl = Cypress.config().baseUrl;
 describe("template spec", () => {
   it("should visit localhost:3000, go to create new rent, create a new rent, go to details, modify it and delete it.", () => {
-    cy.visit("http://localhost:3000/");
+    cy.visit(baseUrl || "/");
     cy.contains("Create new Rent").click();
     cy.get("#carId")
       .find("option:not(:disabled)")

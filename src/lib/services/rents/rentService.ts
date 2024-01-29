@@ -46,8 +46,7 @@ const RentService = {
         },
         body: JSON.stringify(updatedRentData),
       });
-      const data = await response.json();
-      return data;
+      await response.json();
     } catch (error) {
       throw new Error("Error updating rent");
     }
@@ -58,8 +57,7 @@ const RentService = {
       const response = await fetch(`${API_BASE_URL}/rents/${rentId}`, {
         method: "DELETE",
       });
-      const data = await response.json();
-      return data;
+      await response.json();
     } catch (error) {
       throw new Error("Error deleting rent");
     }
