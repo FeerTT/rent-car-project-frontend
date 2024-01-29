@@ -3,12 +3,17 @@ import CarRoutes from "./routes/carRoutes/carRoutes";
 import "bulma/css/bulma.min.css";
 import CustomerRoutes from "./routes/customerRoutes/customerRoutes";
 import RentRoutes from "./routes/rentRoutes/rentRoutes";
+import dotenv from "dotenv";
+dotenv.config();
 
 function App() {
   document.title = "Rent Car Project";
+  const URL = process.env.REACT_APP_URL_BASE;
+
   const handleRedirect = (path: string) => {
-    window.location.href = `http://localhost:3000${path}`;
+    window.location.href = `${URL}${path}`;
   };
+
   return (
     <div className="App">
       <div className="buttons is-centered mt-6">
